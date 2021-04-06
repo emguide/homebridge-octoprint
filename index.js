@@ -25,6 +25,7 @@ function OctoPrint(log, config) {
   this.name = config["name"];
   this.server = config["server"] || 'http://octopi.local';
   this.apiKey = config["api_key"];
+  this.disableSet= config["disable_set"] || false;
 
   log.info("Initialized OctoPrint Accessory at " + this.server);
 }
@@ -86,7 +87,10 @@ OctoPrint.prototype = {
         This function sets the current printing state. It is only allowed to shut down the printer
     */
     setPrintingState(value, callback) {
-        if (value == 1) {
+        if(this.disableSet){
+            console.log("Set disabled.");
+            callback(1)
+        } else if (value == 1) {
             console.log("You cannot start a print with homekit.");
             callback(1);
         } else {
