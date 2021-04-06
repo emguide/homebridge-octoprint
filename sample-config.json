@@ -10,7 +10,8 @@
         {
             "accessory": "OctoPrint",
             "name": "OctoPrint",
-            "api_key": "XXXXX"
+            "api_key": "XXXXX",
+            "disable_set": true
         }
     ]
 }
